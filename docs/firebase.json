@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "site": "minicrane-vue",
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

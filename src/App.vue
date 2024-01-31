@@ -1,12 +1,19 @@
 <script setup>
 	import {ref} from 'vue'
 	import country from "@/assets/country.json"
-	const [...rest] = country
-	const countries = ref([...rest])
+	const countries = ref(country)
+function searchCode(ctr){
+	const b = 'BO'
+	if(ctr.Code === b){
+	return ctr.Name
+	}else{
+	return null 
+	}
+}
 </script>
 
 <template>
-	<li v-for = "ctr in countries">
-		{{ ctr.Name }} - {{ ctr.Code }}
-	</li>
+	<ul v-for = "ctr in countries" >	
+	<span>{{searchCode(ctr)}}</span>
+	</ul>
 </template>

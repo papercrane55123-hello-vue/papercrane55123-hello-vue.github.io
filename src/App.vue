@@ -1,24 +1,12 @@
 <script setup>
 	import {ref} from 'vue'
-	import category from "@/assets/category.json"
-	const [...rest] = category
-	const categories = ref([...rest]) 
-//	const ccc = ref(category)
-	const parentMessage = ref('Parent')
-	const items = ref([{ message: 'Foo', name: 'min' }, {message: 'Bar'}])
+	import country from "@/assets/country.json"
+	const [...rest] = country
+	const countries = ref([...rest])
 </script>
 
 <template>
-	<li v-for = "(item, index) in items">
-		{{ item.name }} - {{ index }} - {{ item.message }}
+	<li v-for = "ctr in countries">
+		{{ ctr.Name }} - {{ ctr.Code }}
 	</li>
-
-	<li v-for = "(ctr) in categories">
-		{{ ctr.name }} - {{ ctr.code }}
-	</li>
-
-<!--	<li v-for = "(r) in ccc">
-		{{ r.name }} - {{ r.code }}
-	</li>
--->
 </template>

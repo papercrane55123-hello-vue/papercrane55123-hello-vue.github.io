@@ -1,8 +1,8 @@
 <script setup>
 	import {ref} from 'vue'
 	import category from "@/assets/category.json"
-	const [one, two, three, four] = category
-	const categories = [one, two, three, four]
+	const [...rest] = category
+	const categories = [...rest] 
 	const parentMessage = ref('Parent')
 	const items = ref([{ message: 'Foo', name: 'min' }, {message: 'Bar'}])
 </script>

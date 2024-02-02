@@ -1,36 +1,23 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 
-let show = ref(true)
-const list = ref([1,2,3])
+const todoId =ref(1)
+const todoData = ref(null)
 
-function landering(){
-	console.log(show.value)
-	if(show.value === true){
-		show.value = false
-	} else { show.value = true }
+async function fetchData() {
+	
+	todoData.value = null
+	const res = await fetch(
+		`https://jsonplaceholder.typicode.com/todos/${todoId.value}`
+	)
+	todoData.value = await res.json()
 }
-function addList(){
-	let i = list.value.length + 1 
-	list.value.push(i)
-}
-function deleteList(){
-	list.value.splice(list.value.length-1)
-}
-function reverseList(){
-	list.value.reverse()
-}
+fetchData()
 </script> 
 
 <template>
-	<button @click.prevent="landering">List 랜더링 ON/Off </button>
-	<button @click.prevent="addList">List 추가 </button>
-	<button @click.prevent="deleteList">List 제거 </button>
-	<button @click.prevent="reverseList">List 뒤집기</button>
-	
-	<ul v-if="list.length > 0 && show">
-		<li v-for="item of list">{{ item }} </li>
-	</ul>
-	<p v-else-if="list.length > 0">List is not empty, but hidden</p>
-	<p v-else>List is empty</p>
+	<p>Todo id: {{ todoId }}</p>
+	<button @click="todoId++ && fetchData()" :disabled="!todoData">Fetch next todo</button>
+	<p v-if="!todoData">Loading...</p>
+	<pre v-else>{{ todoData }}</pre>
 </template>

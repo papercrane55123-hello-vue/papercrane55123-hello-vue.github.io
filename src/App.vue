@@ -1,24 +1,19 @@
 <script setup>
 	import {ref} from 'vue'
-	import category from "@/assets/category.json"
-	const [...rest] = category
-	const categories = ref([...rest]) 
-//	const ccc = ref(category)
-	const parentMessage = ref('Parent')
-	const items = ref([{ message: 'Foo', name: 'min' }, {message: 'Bar'}])
+	import country from "@/assets/country.json"
+	const countries = ref(country)
+function searchCode(ctr){
+	const b = 'BO'
+	if(ctr.Code === b){
+	return ctr.Name
+	}else{
+	return null 
+	}
+}
 </script>
 
 <template>
-	<li v-for = "(item, index) in items">
-		{{ item.name }} - {{ index }} - {{ item.message }}
-	</li>
-
-	<li v-for = "(ctr) in categories">
-		{{ ctr.name }} - {{ ctr.code }}
-	</li>
-
-<!--	<li v-for = "(r) in ccc">
-		{{ r.name }} - {{ r.code }}
-	</li>
--->
+	<ul v-for = "ctr in countries" >	
+	<span>{{searchCode(ctr)}}</span>
+	</ul>
 </template>
